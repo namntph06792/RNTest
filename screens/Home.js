@@ -1,11 +1,17 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import styles  from '../style/styles';
+import { Container, Header, Content, Button, Text } from 'native-base';
 
-export default function App() {
+export default function Home(props) {
     return (
-        <View style={styles.container}>
-            <Text>Open up App.js to start working on your app!</Text>
-        </View>
+        <Container>
+            <Content>
+                <Button rounded onPress={() => props.navigation.navigate('Add')}>
+                    <Text>Add</Text>
+                </Button>
+                <Button rounded onPress={() => props.navigation.navigate('List')}>
+                    <Text>List</Text>
+                </Button>
+            </Content>
+        </Container>
     );
 }
