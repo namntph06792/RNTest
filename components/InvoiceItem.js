@@ -7,6 +7,10 @@ export default function InvoiceItem(props,nav) {
 
     this.component = [];
 
+    var _name = props.dat.name;
+    var _content = props.dat.content;
+    var _price = props.dat.price;
+
     deleteDataFromFirebase = (id) => {
         Alert.alert(
             'Confirmation !',
@@ -25,9 +29,9 @@ export default function InvoiceItem(props,nav) {
 
     toDetailPage = () => {
         props.nav.navigate('Detail', {
-            name: props.dat.name,
-            content: props.dat.content,
-            price: props.dat.price
+            name: _name,
+            content: _content,
+            price: _price
         })
     }
 

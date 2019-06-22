@@ -27,14 +27,17 @@ export default function Add(props) {
                     [
                         {
                             text: 'OK',
-                            onPress: () => props.navigation.navigate('Home')
+                            onPress: () => {
+                                this.resetState();
+                                props.navigation.navigate('Home');
+                            }
                         }
                     ]
                 );
 
             }
         });
-        this.resetState();
+        
     }
 
     //Validate data from input form

@@ -3,15 +3,14 @@ import { Image } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body } from 'native-base';
 import styles from '../style/styles';
 
-export default function Detail(props) {
-
-    const itemName = props.navigation.getParam('name', 'NO_NAME');
-    const itemContent = props.navigation.getParam('content', 'NO_CONTENT');
-    const itemPrice = props.navigation.getParam('price', 'NO_PRICE');
+export default function Detail(tab) {
+    
+    itemName = tab.navigation.getParam('name', 'NO_NAME');
+    itemContent = tab.navigation.getParam('content', 'NO_CONTENT');
+    itemPrice = tab.navigation.getParam('price', 'NO_PRICE');
 
     return (
         <Container>
-            <Header />
             <Content>
                 <Card style={{ flex: 0 }}>
                     <CardItem>
