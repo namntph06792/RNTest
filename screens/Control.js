@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity, KeyboardAvoidingView, TouchableWithoutFeedback, TextInput, Keyboard, Text, Alert } from 'react-native';
+import { View, TouchableOpacity, KeyboardAvoidingView, TextInput, Keyboard, Text, Alert } from 'react-native';
+import { Toast } from 'native-base';
 import styles from '../style/styles';
-import { firebaseApp } from '../config/firebase';
+import { saveDataToFirebase, updateFirebaseData } from '../controllers/firebase_dao';
 
 export default function Add(props) {
 
@@ -12,74 +13,49 @@ export default function Add(props) {
     const [content, setContent] = useState(action === 0 ? '' : invoice.content);
     const [price, setPrice] = useState(action === 0 ? '' : invoice.price);
 
-    //Firebase DAO
-    saveDataToFirebase = () => {
-        firebaseApp.database().ref('invoices/').push({
-            name: name,
-            content: content,
-            price: price,
-        }, function (error) {
-            if (error) {
-                // The write failed...
-                alert('Something wrong happened ! We can not save your data')
-            } else {
-                // Data saved successfully!
-                Alert.alert(
-                    'Information',
-                    'Save data successful !',
-                    [{
-                            text: 'OK',
-                            onPress: () => {
-                                this.resetState();
-                                props.navigation.navigate('Home');
-                            }
-                    }]
-                );
-            }
-        });
-    }
-
-    updateFirebaseData = (id) => {
-        firebaseApp.database().ref('invoices/' + id).set({
-            name: name,
-            content: content,
-            price: price,
-        }, function (error) {
-            if (error) {
-                // The write failed...
-                alert('Something wrong happened ! We can not update your data')
-            } else {
-                // Data saved successfully!
-                Alert.alert(
-                    'Information',
-                    'Update data successful !',
-                    [{
-                        text: 'OK',
-                        onPress: () => {
-                            this.resetState();
-                            props.navigation.navigate('List');
-                        }
-                    }]
-                );
-            }
-        });
-    }
-
     //Validate data from input form
-    validatePostRegister = () => {
+    validatePostRegister = (a) => {
         space = /^\s*$/;
         regP = /\d+/;
+        //position: top|bottom , type: warning|success|danger , 
         if (space.test(name)) {
-            alert('Name can not be empty');
+            Toast.show({
+                text: 'Name can not be empty !',
+                textStyle: { color: '#e9eaa8'},
+                buttonText: 'Got it',
+                buttonTextStyle: { color: '#cececa' },
+                buttonStyle: { backgroundColor: '#8bc692' },
+                duration: 2000,
+                position: 'top',
+                type: 'danger'
+            })
         } else if (space.test(content)) {
-            alert('Content can not be empty');
+            Toast.show({
+                text: 'Content can not be empty !',
+                textStyle: { color: '#e9eaa8' },
+                buttonText: 'Got it',
+                buttonTextStyle: { color: '#cececa' },
+                buttonStyle: { backgroundColor: '#8bc692' },
+                duration: 2000,
+                position: 'top',
+                type: 'danger'
+            })
         } else if (space.test(price) || !regP.test(price)) {
-            alert('Price can not be empty and must be number type')
+            Toast.show({
+                text: 'Price can not be empty and must be number type !',
+                textStyle: { color: '#e9eaa8' },
+                buttonText: 'Got it',
+                buttonTextStyle: { color: '#cececa' },
+                buttonStyle: { backgroundColor: '#8bc692' },
+                duration: 2000,
+                position: 'top',
+                type: 'danger'
+            })
         } else {
-            if(action === 0){
-                saveDataToFirebase();
-            } else if(action === 1){
-                updateFirebaseData(invoice.id)
+            if(a === 0){
+                saveDataToFirebase(name,content,price,props);
+            } else if(a === 1){
+                updateFirebaseData(invoice.id,name,content,price,props);
             }
         }
     }
@@ -130,7 +106,7 @@ export default function Add(props) {
                             onChangeText={(price) => { setPrice(price) }}
                             value={price}
                         />
-                        <TouchableOpacity style={styles.row_btn_submit} onPress={() => this.validatePostRegister()}>
+                        <TouchableOpacity style={styles.row_btn_submit} onPress={() => this.validatePostRegister(action)}>
                             <Text style={styles.row_btn_submit_text}>Add</Text>
                         </TouchableOpacity>
                     </View>
@@ -176,7 +152,7 @@ export default function Add(props) {
                             onChangeText={(price) => { setPrice(price) }}
                             value={price}
                         />
-                        <TouchableOpacity style={styles.row_btn_submit} onPress={() => this.validatePostRegister()}>
+                        <TouchableOpacity style={styles.row_btn_submit} onPress={() => this.validatePostRegister(action)}>
                             <Text style={styles.row_btn_submit_text}>Update</Text>
                         </TouchableOpacity>
                     </View>

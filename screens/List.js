@@ -5,17 +5,20 @@ import { firebaseApp } from '../config/firebase';
 import styles from '../style/styles';
 
 export default function List(props) {
-
-    const [data, setData] = useState([]);
+    
     const [isLoading, setLoading] = useState(true);
+
+    let array = [];
 
     useEffect(() => {
         fetchFirebaseData();
     })
 
-    fetchFirebaseData = () => {
-        firebaseApp.database().ref('invoices/').on('value', function (snapshot) {
-            let array = [];
+    const [data, setData] = useState(array);
+
+    fetchFirebaseData = async() => {
+        await firebaseApp.database().ref('invoices/').on('value', function (snapshot) {
+            
             snapshot.forEach(function (childSnapshot) {
                 var childData = childSnapshot.val();
                 array.push({
@@ -25,7 +28,6 @@ export default function List(props) {
                     price: childData.price,
                 });
             });
-            setData(array);
             setLoading(false);
         });
     }

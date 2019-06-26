@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Image } from 'react-native';
+import { Root } from 'native-base';
 import Splash from './screens/Splash';
 import Home from './screens/Home';
 import Control from './screens/Control';
@@ -23,6 +24,9 @@ const MainNavigator = createStackNavigator({
   },
   Control: {
     screen: Control,
+    navigationOptions: {
+      title: 'Manage Item'
+    }
   },
   List: {
     screen: List, 
@@ -39,7 +43,10 @@ const MainNavigator = createStackNavigator({
     })
   },
   Detail: {
-    screen: Detail
+    screen: Detail,
+    navigationOptions: {
+      title: 'Detail',
+    }
   }
 }, {
     defaultNavigationOptions: {
@@ -58,6 +65,10 @@ const MainNavigator = createStackNavigator({
 const MainContainer = createAppContainer(MainNavigator);
 
 export default function App() {
-  return <MainContainer/>
+  return (
+    <Root>
+      <MainContainer />
+    </Root>
+  )
 }
 

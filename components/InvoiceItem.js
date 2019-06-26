@@ -1,16 +1,11 @@
 import React, { } from 'react';
 import { Alert } from 'react-native';
-import { Text, Icon, Button, ListItem, Thumbnail } from 'native-base';
+import { Text, ListItem, Thumbnail } from 'native-base';
 import Swipeout from 'react-native-swipeout';
-import { firebaseApp } from '../config/firebase';
 import styles from '../style/styles';
+import { deleteDataFromFirebase } from '../controllers/firebase_dao';
 
-export default function InvoiceItem(props, nav) {
-
-    //FirebaseDAO
-    deleteDataFromFirebase = (id) => {
-        firebaseApp.database().ref('invoices/' + id).remove()
-    }
+export default function InvoiceItem(props) {
 
     //Navigate
     toDetailPage = (_name, _content, _price) => {
