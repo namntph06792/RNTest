@@ -1,181 +1,154 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const DeviceWidth = Dimensions.get('window').width
 
 export default StyleSheet.create({
-    //LoginScreen,RegisterScreen
-    scrollview: {
+    //Splash
+    splash_container: {
         flex: 1,
-        flexDirection: "column",
-        backgroundColor: "rgb(32,53,78)",
-        justifyContent: "center",
-        paddingVertical: 20,
+        justifyContent: 'center',
+        backgroundColor: '#ffffff',
+        alignItems: 'center'
     },
-    container: {
+    //Home
+    home_container: {
+        flex: 1, 
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#ced5e0',
+    },
+    row_menu: {
+        flexDirection: 'row',
+    },
+    col_menu: {
+        marginRight: 20, 
+        marginLeft: 20
+    },
+    row_item_one: {
+        width: DeviceWidth * 0.35,
+        height: DeviceWidth * 0.35,
+        marginBottom: 20, 
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    row_item_two: {
+        width: DeviceWidth * 0.35,
+        height: DeviceWidth * 0.35,
+        marginBottom: 20,
+        marginTop: 20,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    row_item_three: {
+        width: DeviceWidth * 0.35, 
+        height: DeviceWidth * 0.35, 
+        marginTop: 20, 
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    row_image: {
+        width: '60%',
+        height: '60%',
+        marginBottom: 5
+    },
+    row_text: {
+        fontStyle: 'italic',
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#82abed'        
+    },
+    //Add
+    add_container: {
         flex: 1,
-        flexDirection: "column",
-        backgroundColor: "rgb(32,53,78)",
-        justifyContent: "center",
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#ffffff',
+        flexDirection: 'column',
     },
-    header: {
-        position: "absolute",
-        left: 0,
-        right: 0,
-        top: 20,
-        alignItems: "center",
-        justifyContent: "center"
-    },
-    logo: {
-        width: 128,
-        height: 56,
-        marginTop: 100
-    },
-    loginInfo: {
-        justifyContent: "center",
-        alignItems: "center",
+    form_input: {
+        width: '80%',
+        padding: 8,
+        justifyContent: 'center',
+        alignItems: 'center',
         marginTop: 50
     },
-    loginInfoSection: {
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "center"
-    },
-    inputImage: {
-        position: "absolute",
-        top: 0,
-        left: 10,
-        height: 35,
-        width: 25,
-        resizeMode: "stretch",
-        alignItems: "center"
-    },
-    input: {
-        textAlign: "center",
+    row_input_first: {
+        marginTop: 10,
+        marginBottom: 5, 
+        textAlign: 'center',
         borderRadius: 5,
         borderWidth: 0.5,
-        borderColor: "#000",
+        borderColor: '#000',
         height: 40,
         width: 250,
-        backgroundColor: "rgba(255,255,255,0.2)",
+        backgroundColor: 'rgba(255,255,255,0.2)',
         marginBottom: 20,
         paddingHorizontal: 10
     },
-    btnLogin: {
-        backgroundColor: "green",
-        paddingVertical: 15,
+    row_input: {
+        marginTop: 5,
+        marginBottom: 5,
+        textAlign: 'center',
+        borderRadius: 5,
+        borderWidth: 0.5,
+        borderColor: '#000',
+        height: 40,
         width: 250,
-        marginTop: 5
+        backgroundColor: 'rgba(255,255,255,0.2)',
+        marginBottom: 20,
+        paddingHorizontal: 10
     },
-    textButton: {
-        textAlign: "center",
-        fontWeight: "bold",
-        fontSize: 18,
-        color: "rgb(32,53,70)"
-    },
-    signup: {
-        position: "absolute",
-        bottom: 10,
-        flex: 1,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-        width: "100%"
-    },
-    text: {
-        fontSize: 20,
-        fontWeight: "bold",
-        color: "white"
-    },
-    btnRegister: {
-        backgroundColor: "green",
-        paddingVertical: 15,
-        width: 250
-    },
-    signin: {
-        position: "absolute",
-        bottom: 10,
-        flex: 1,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-        width: "100%"
-    },
-    btnEye: {
-        opacity: 0.5,
-        position: 'absolute',
-        top: 6,
-        right: 5
-    },
-    //Common
-    error: {
-        borderWidth: 3,
-        borderColor: 'red',
-    },
-    //UserHeader
-    userHeader: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: 30
-    },
-    button: {
-        flex: 0.5,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    image: {
-        width: 20,
-        height: 20,
-    },
-    //UserContentItem
-    user_item: {
-        marginTop: 0,
+    row_input_last: {
+        marginTop: 5,
         marginBottom: 10,
-        borderRadius: 10,
+        textAlign: 'center',
+        borderRadius: 5,
+        borderWidth: 0.5,
+        borderColor: '#000',
+        height: 40,
+        width: 250,
+        backgroundColor: 'rgba(255,255,255,0.2)',
+        marginBottom: 20,
+        paddingHorizontal: 10
     },
-    //ListPostScreen
-    listpost_container: {
+    row_btn_submit: {
+        backgroundColor: '#82abed',
+        paddingVertical: 15,
+        width: '100%',
+        marginTop: 5,
+        padding: 8,
+        width: 200,
+        
+    },
+    row_btn_submit_text: {
+        textAlign: 'center',
+        fontSize: 15,
+        fontWeight: 'bold',
+    },
+    //List
+    list_container: {
         flex: 1,
         flexDirection: 'column',
     },
-    listpost_btnGroup: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        marginTop: 10,
-        marginBottom: 10,
+    //Invoice Item
+    list_item:{
+        padding: 10, 
+        margin: 5, 
+        flex: 1, 
+        height: '100%'
     },
-    listpost_btn: {
-        flex: 0.4,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 1,
-        borderRadius: 10,
-        borderColor: 'blue',
-        height: 35,
-        backgroundColor: '#00bfff',
+    thumbnail: {
+        marginRight: 20
     },
-    //PostScreen
-    post_container: {
-        flex: 1,
+    text_name: {
+        color: 'blue', 
+        fontSize: 20, 
+        fontStyle: 'italic', 
+        fontWeight: 'bold'
     },
-    //ListPostItem
-    post_item: {
-        borderWidth: 1.5,
-        borderRadius: 10,
-        borderColor: '#d9e3f0',
-        justifyContent: 'center',
-        width: '100%',
-    },
-    edit_post_container: {
-        height: 250,
-    },
-    //Fragment Photo
-    photo_content: {
-        flexDirection: 'row',
-    },
-    photo_item: {
-        width: '100%',
-        height: 250,
+    //Detail
+    item_image: {
+        height: 200, 
+        width: '100%', 
     }
 });

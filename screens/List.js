@@ -38,13 +38,12 @@ export default function List(props) {
         );
     }
     return (
-        <View style={styles.listpost_container}>
+        <View style={styles.list_container}>
             <FlatList
                 style={{ flex: 1 }}
                 data={data}
-                renderItem={({ item }) => <InvoiceItem dat={item} nav={props.navigation} />}
-                keyExtractor={(item, index) => item.id}
-            />
+                renderItem={({ item }) => <InvoiceItem dat={item} prop={props} />}
+                keyExtractor={(item, index) => item.id} />
         </View>
     );
 }
